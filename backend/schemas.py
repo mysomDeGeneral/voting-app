@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
+from datetime import date
 
 class AdminBase(BaseModel):
     username: str
@@ -9,6 +10,8 @@ class AdminCreate(AdminBase):
     password: str
 
 class AdminUpdate(AdminBase):
+    username: Optional[str] = None
+    email: Optional[str] = None
     password: Optional[str] = None
 
 class Admin(AdminBase):
@@ -21,7 +24,7 @@ class UserBase(BaseModel):
     username: str
     email: str
     full_name: str
-    date_of_birth: str
+    date_of_birth: date
 
 class UserCreate(UserBase):
     password: str
