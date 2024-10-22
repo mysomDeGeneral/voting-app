@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional
-from datetime import date
+from datetime import date, datetime
 
 class AdminBase(BaseModel):
     username: str
@@ -43,8 +43,8 @@ class User(UserBase):
 class ElectionBase(BaseModel):
     title: str
     description: str
-    start_date: str
-    end_date: str
+    start_date: datetime
+    end_date: datetime
 
 class ElectionCreate(ElectionBase):
     pass
@@ -91,7 +91,7 @@ class Candidate(CandidateBase):
 class VoteBase(BaseModel):
     user_id: int
     election_id: int
-    timestamp: str
+    timestamp: datetime
 
 class VoteCreate(VoteBase):
     pass

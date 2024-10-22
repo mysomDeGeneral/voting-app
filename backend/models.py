@@ -1,4 +1,4 @@
-from sqlalchemy import String, Integer, Column, Date, Boolean, ForeignKey
+from sqlalchemy import String, Integer, Column, Date, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -27,9 +27,9 @@ class Election(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(255), nullable=False)
     description = Column(String(255), nullable=False)
-    start_date = Column(Date, nullable=False)
-    end_date = Column(Date, nullable=False)
-    is_active = Column(Boolean, default=False)
+    start_date = Column(DateTime, nullable=False)
+    end_date = Column(DateTime, nullable=False)
+    is_active = Column(Boolean, default=True)
 
 class Category(Base):
     __tablename__ = 'category'
@@ -53,7 +53,7 @@ class Vote(Base):
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     election_id = Column(Integer, ForeignKey('election.id'))
-    timestamp = Column(Date, nullable=False)
+    timestamp = Column(DateTime, nullable=False)
 
 class VoteDetail(Base):
     __tablename__ = 'vote_detail'
